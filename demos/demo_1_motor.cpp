@@ -79,7 +79,16 @@ static THREAD_FUNCTION_RETURN_TYPE printing_loop(void *hardware_ptr)
     // cast input arguments to the right format --------------------------------
     Hardware &hardware = *(static_cast<Hardware *>(hardware_ptr));
 
-    // print info --------------------------------------------------------------
+    // print info 
+  
+  /*In this code, hardware.can_bus->get_output_frame() is a method call to get the output frame of the CanBusInterface object stored in hardware.can_bus. The "->" is a shorthand for calling a method or accessing a member of a pointer or a pointer-like object.
+
+The method get_output_frame() returns a pointer to a real_time_tools::RealTimeContainer object that contains the CAN frames that are being sent or received.
+
+newest_timeindex() is a method of the RealTimeContainer class that returns the index of the newest element in the container. In other words, timeindex will hold the index of the latest CAN frame that was received or sent by the CanBusInterface object.
+
+Overall, this code initializes timeindex to the index of the newest CAN frame in the output frame of the CanBusInterface object. This value will be used later in the printing_loop function to retrieve and print the contents of the most recent CAN frames.--------------------------------------------------------------
+*/
     long int timeindex =
         hardware.can_bus->get_output_frame()->newest_timeindex();
 
