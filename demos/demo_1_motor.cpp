@@ -3,6 +3,13 @@
  * @copyright Copyright (c) 2018-2020, New York University and Max Planck
  * Gesellschaft, License BSD-3-Clause
  */
+//The main function starts two threads, one for the control loop and one for the printing loop. 
+/*The code uses the following libraries:
+
+std::tuple: a template class that represents a fixed-size collection of heterogeneous values. In this code, it is used to define the MotorAndSlider type, which is a tuple that contains a shared pointer to a MotorInterface object and a shared pointer to an AnalogSensorInterface object    std::shared_ptr: a smart pointer that manages the lifetime of an object and ensures that it is destroyed when no longer needed. The code uses shared_ptr to manage objects of the CanBus, MotorBoard, Motor, and AnalogSensor classes.
+blmc_drivers: a library that provides an interface to communicate with the motor board and its components.
+real_time_tools: a library that provides tools for real-time programming.
+*/
 
 #include <tuple>
 
@@ -15,6 +22,17 @@ typedef std::tuple<std::shared_ptr<blmc_drivers::MotorInterface>,
                    std::shared_ptr<blmc_drivers::AnalogSensorInterface>>
     MotorAndSlider;
 
+/*
+This code defines a struct named Hardware, which contains four member variables:
+
+    can_bus: a shared pointer to an object of type blmc_drivers::CanBusInterface, which represents the interface to communicate with the CAN bus.
+    motor_board: a shared pointer to an object of type blmc_drivers::MotorBoardInterface, which represents the interface to communicate with the motor board.
+    motor: a shared pointer to an object of type blmc_drivers::MotorInterface, which represents the interface to control a motor.
+    slider: a shared pointer to an object of type blmc_drivers::AnalogSensorInterface, which represents the interface to read a slider position.
+
+This struct is likely used to organize the various hardware components required for controlling a motor using the BLMC (Brushless Motor Control) library.
+*/
+  
 struct Hardware
 {
     std::shared_ptr<blmc_drivers::CanBusInterface> can_bus;
