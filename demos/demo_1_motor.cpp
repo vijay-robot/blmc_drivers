@@ -41,26 +41,37 @@ struct Hardware
     std::shared_ptr<blmc_drivers::AnalogSensorInterface> slider;
 };
 
-<!-- /*static is a keyword in C++ that specifies that the function or variable should have internal linkage, meaning that it can only be accessed within the current translation unit.*/ -->
+<!-- /*static is a keyword in C++ that specifies that the function or variable should have internal linkage, meaning that it can only be accessed 
+within the current translation unit.*/ -->
 
-/*THREAD_FUNCTION_RETURN_TYPE is a macro that is typically defined to specify the return type of a real-time thread function. It can be a void or an integer, depending on the specific real-time library being used.
+/*THREAD_FUNCTION_RETURN_TYPE is a macro that is typically defined to specify the return type of a real-time thread function. It can be a void or an 
+integer, depending on the specific real-time library being used.
 
-control_loop is the name of the function being defined.
 
-void *hardware_ptr is a pointer to void that serves as a generic input argument for the function. The function expects a pointer to a structure of type Hardware as input, but since we can't define the input argument type as Hardware, we define it as a pointer to void instead.
-
-The static_cast<Hardware *>(hardware_ptr) expression casts the pointer to void back to a pointer to the Hardware structure type. The * operator then dereferences the resulting pointer, giving us access to the Hardware object that was passed as input to the function. Finally, the &hardware expression creates a reference to the Hardware object so that we can access its member variables inside the function.
 -->*/
 static THREAD_FUNCTION_RETURN_TYPE control_loop(void *hardware_ptr)
 {
     // cast input arguments to the right format --------------------------------
     Hardware &hardware = *(static_cast<Hardware *>(hardware_ptr));
 
-/* In this line of code, hardware_ptr (which is a void* pointer) is first cast to a pointer of type Hardware* using a static_cast. This is done because hardware_ptr was cast to void* pointer when it was passed to control_loop. Casting it back to Hardware* allows the code to access the members of the Hardware struct.
+/* 
+In C++, a void pointer is a special type of pointer that can point to an object of any data type. It is used when the data type of the object 
+being pointed to is not known at the time the pointer is declared, or when the pointer needs to be able to point to different types of objects at 
+different times.
 
-The dereferencing operator * is then used to obtain the actual Hardware object that hardware_ptr points to. The resulting pointer is then assigned to a reference called hardware, which is a reference to the original Hardware object passed to the control_loop function.
+The void type is an incomplete type, which means that it has no size and cannot be dereferenced. A void pointer, on the other hand, can be assigned 
+the address of any data type, and can be cast to any other pointer type. When a void pointer is cast to another pointer type, the type of the object 
+eing pointed to is determined by the type to which the void pointer is cast.
 
-By using a reference to the original Hardware object, the code can access and modify the members of the Hardware struct within the function, and the changes made to hardware will be reflected in the original object passed to control_loop.
+In this line of code, hardware_ptr (which is a void* pointer) is first cast to a pointer of type Hardware* using a static_cast. This is done because 
+hardware_ptr was cast to void* pointer when it was passed to control_loop. Casting it back to Hardware* allows the code to access the members of the 
+Hardware struct.
+
+The dereferencing operator * is then used to obtain the actual Hardware object that hardware_ptr points to. The resulting pointer is then assigned to a 
+reference called hardware, which is a reference to the original Hardware object passed to the control_loop function.
+
+By using a reference to the original Hardware object, the code can access and modify the members of the Hardware struct within the function, and the 
+changes made to hardware will be reflected in the original object passed to control_loop.
 */
     // torque controller -------------------------------------------------------
     real_time_tools::Spinner spinner;
@@ -82,13 +93,16 @@ static THREAD_FUNCTION_RETURN_TYPE printing_loop(void *hardware_ptr)
 
     // print info 
   
-  /*In this code, hardware.can_bus->get_output_frame() is a method call to get the output frame of the CanBusInterface object stored in hardware.can_bus. The "->" is a shorthand for calling a method or accessing a member of a pointer or a pointer-like object.
+  /*In this code, hardware.can_bus->get_output_frame() is a method call to get the output frame of the CanBusInterface object stored in hardware.can_bus.
+  The "->" is a shorthand for calling a method or accessing a member of a pointer or a pointer-like object.
 
 The method get_output_frame() returns a pointer to a real_time_tools::RealTimeContainer object that contains the CAN frames that are being sent or received.
 
-newest_timeindex() is a method of the RealTimeContainer class that returns the index of the newest element in the container. In other words, timeindex will hold the index of the latest CAN frame that was received or sent by the CanBusInterface object.
+newest_timeindex() is a method of the RealTimeContainer class that returns the index of the newest element in the container. In other words, timeindex will
+hold the index of the latest CAN frame that was received or sent by the CanBusInterface object.
 
-Overall, this code initializes timeindex to the index of the newest CAN frame in the output frame of the CanBusInterface object. This value will be used later in the printing_loop function to retrieve and print the contents of the most recent CAN frames.--------------------------------------------------------------
+Overall, this code initializes timeindex to the index of the newest CAN frame in the output frame of the CanBusInterface object. This value will be used 
+later in the printing_loop function to retrieve and print the contents of the most recent CAN frames.--------------------------------------------------------------
 */
     long int timeindex =
         hardware.can_bus->get_output_frame()->newest_timeindex();
