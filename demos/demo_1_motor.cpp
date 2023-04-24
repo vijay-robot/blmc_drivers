@@ -134,7 +134,7 @@ int main(int argc, char **argv)
     }
 
     std::string can_bus_name(argv[1]);
-    int motor_index = std::atoi(argv[2]);
+    int motor_index = std::atoi(argv[2]);  //convert string to integer
 
     std::cout << "can_bus_name: " << can_bus_name
               << " motor_index: " << motor_index << std::endl;
