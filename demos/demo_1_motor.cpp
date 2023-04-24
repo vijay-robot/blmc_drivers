@@ -41,9 +41,9 @@ struct Hardware
     std::shared_ptr<blmc_drivers::AnalogSensorInterface> slider;
 };
 
-/*<!--static is a keyword in C++ that specifies that the function or variable should have internal linkage, meaning that it can only be accessed within the current translation unit.-->
+<!-- /*static is a keyword in C++ that specifies that the function or variable should have internal linkage, meaning that it can only be accessed within the current translation unit.*/ -->
 
-THREAD_FUNCTION_RETURN_TYPE is a macro that is typically defined to specify the return type of a real-time thread function. It can be a void or an integer, depending on the specific real-time library being used.
+/*THREAD_FUNCTION_RETURN_TYPE is a macro that is typically defined to specify the return type of a real-time thread function. It can be a void or an integer, depending on the specific real-time library being used.
 
 control_loop is the name of the function being defined.
 
