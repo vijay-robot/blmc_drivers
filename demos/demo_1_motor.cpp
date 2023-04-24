@@ -40,7 +40,8 @@ struct Hardware
     std::shared_ptr<blmc_drivers::MotorInterface> motor;
     std::shared_ptr<blmc_drivers::AnalogSensorInterface> slider;
 };
-/*static is a keyword in C++ that specifies that the function or variable should have internal linkage, meaning that it can only be accessed within the current translation unit.
+
+<!--/*static is a keyword in C++ that specifies that the function or variable should have internal linkage, meaning that it can only be accessed within the current translation unit.
 
 THREAD_FUNCTION_RETURN_TYPE is a macro that is typically defined to specify the return type of a real-time thread function. It can be a void or an integer, depending on the specific real-time library being used.
 
@@ -49,7 +50,7 @@ control_loop is the name of the function being defined.
 void *hardware_ptr is a pointer to void that serves as a generic input argument for the function. The function expects a pointer to a structure of type Hardware as input, but since we can't define the input argument type as Hardware, we define it as a pointer to void instead.
 
 The static_cast<Hardware *>(hardware_ptr) expression casts the pointer to void back to a pointer to the Hardware structure type. The * operator then dereferences the resulting pointer, giving us access to the Hardware object that was passed as input to the function. Finally, the &hardware expression creates a reference to the Hardware object so that we can access its member variables inside the function.
-*/
+*/-->
 static THREAD_FUNCTION_RETURN_TYPE control_loop(void *hardware_ptr)
 {
     // cast input arguments to the right format --------------------------------
