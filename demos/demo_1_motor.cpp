@@ -22,7 +22,7 @@ typedef std::tuple<std::shared_ptr<blmc_drivers::MotorInterface>,
                    std::shared_ptr<blmc_drivers::AnalogSensorInterface>>
     MotorAndSlider;
 
-/*
+<!--/*
 This code defines a struct named Hardware, which contains four member variables:
 
     can_bus: a shared pointer to an object of type blmc_drivers::CanBusInterface, which represents the interface to communicate with the CAN bus.
@@ -31,7 +31,7 @@ This code defines a struct named Hardware, which contains four member variables:
     slider: a shared pointer to an object of type blmc_drivers::AnalogSensorInterface, which represents the interface to read a slider position.
 
 This struct is used to organize the various hardware components required for controlling a motor using the BLMC (Brushless Motor Control) library.
-*/
+*/-->
   
 struct Hardware
 {
