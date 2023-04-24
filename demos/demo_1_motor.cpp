@@ -140,7 +140,10 @@ int main(int argc, char **argv)
               << " motor_index: " << motor_index << std::endl;
 
     Hardware hardware;
-    // First of all one need to initialize the communication with the can bus.
+    /*First of all one need to initialize the communication with the can bus. Hardware hardware is a C++ statement that declares an object hardware 
+  of the Hardware struct type. It creates an instance of the struct, and allocates memory to hold its member variables (can_bus, motor_board, motor, and 
+  slider) on the stack. The struct can then be accessed and modified as needed in the rest of the program.*/
+  
     hardware.can_bus = std::make_shared<blmc_drivers::CanBus>(can_bus_name);
 
     // Then we create a motor board object that will use the can bus in order
