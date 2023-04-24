@@ -30,7 +30,7 @@ This code defines a struct named Hardware, which contains four member variables:
     motor: a shared pointer to an object of type blmc_drivers::MotorInterface, which represents the interface to control a motor.
     slider: a shared pointer to an object of type blmc_drivers::AnalogSensorInterface, which represents the interface to read a slider position.
 
-This struct is likely used to organize the various hardware components required for controlling a motor using the BLMC (Brushless Motor Control) library.
+This struct is used to organize the various hardware components required for controlling a motor using the BLMC (Brushless Motor Control) library.
 */
   
 struct Hardware
